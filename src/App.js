@@ -5,8 +5,8 @@ import {useState} from 'react'
 import Home from './components/Home'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import AuthenticatedRoute from './components/AuthenticatedRoute'
 import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
 
 
 function App() {
@@ -18,20 +18,25 @@ function App() {
   return (
     <div>
       {!loggedIn && (
-        <SignIn user={user} setUser={setUser} setUserId={setUserId} setUserToken={setUserToken} setLoggedIn={setLoggedIn} />
+        <div>
+          <SignIn user={user} setUser={setUser} setUserId={setUserId} setUserToken={setUserToken} setLoggedIn={setLoggedIn} />
+          <SignUp user={user} setUser={setUser} setUserId={setUserId} setUserToken={setUserToken} />
+        </div>
       )}
+
       {loggedIn && (
+        <div>
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand href="#home">Growth</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="#home">Account</Nav.Link>
+            <Nav.Link href="#tasks">Tasks</Nav.Link>
+            <Nav.Link href="#about">About</Nav.Link>
+          </Nav>
+        </Navbar>
         <Home />
+      </div>
       )}
-      
-    {/* <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href="#home">Growth</Navbar.Brand>
-      <Nav className="mr-auto">
-      <Nav.Link href="#home">Account</Nav.Link>
-      <Nav.Link href="#features">Tasks</Nav.Link>
-      <Nav.Link href="#pricing">About</Nav.Link>
-      </Nav>
-    </Navbar> */}
     </div>
   );
 }
