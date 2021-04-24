@@ -1,0 +1,48 @@
+.signIn-form {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.signIn-input {
+    align-self: center;
+    padding: 5px;
+}
+
+.signIn-submit {
+    margin: 10px;
+}
+
+.signIn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.signUp-form {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.signUp-input {
+    align-self: center;
+    padding: 5px;
+}
+
+.signUp-submit {
+    margin: 10px;
+}
+
+.auth-switch:hover {
+    color:cornflowerblue;
+    cursor: pointer;
+}
+
+.signUp-container {
+    display: flex;
+    justify-content: center;
+}
