@@ -20,7 +20,7 @@ function App() {
       {!loggedIn && (
         <div>
           <SignIn user={user} setUser={setUser} setUserId={setUserId} setUserToken={setUserToken} setLoggedIn={setLoggedIn} />
-          <SignUp user={user} setUser={setUser} setUserId={setUserId} setUserToken={setUserToken} />
+          
         </div>
       )}
 
