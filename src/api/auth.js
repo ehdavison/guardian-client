@@ -33,7 +33,7 @@ export const signOut = user => {
     url: apiUrl + '/sign-out',
     method: 'DELETE',
     headers: {
-      'Authorization': `Token ${user.token}`
+      'Authorization': `Bearer ${user}`
     }
   })
 }
