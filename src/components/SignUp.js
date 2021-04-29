@@ -5,6 +5,7 @@ import './auth.css'
 const SignUp = (props) => {
     const [password, setPassword] = useState();
     const [password_confirmation, setPasswordConfirmation] = useState();
+
     const onSubmit = (event) => {
         event.preventDefault()
         signUp({

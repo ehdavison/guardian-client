@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import AccountSettings from './AccountSettings';
+import Tasks from './Tasks'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Navbar from 'react-bootstrap/Navbar'
@@ -8,6 +9,7 @@ import {signOut} from '../api/auth'
 
 const Home = (props) => {
     const [settingsPage, setSettingsPage] = useState(false)
+    const [tasksPage, setTasksPage] = useState(false)
 
     const onSignOut = () => {
         signOut(props.userToken)
@@ -19,6 +21,7 @@ const Home = (props) => {
 
     const goHome = () => {
         setSettingsPage(false)
+        setTasksPage(false)
     }
 
     return (
@@ -32,11 +35,11 @@ const Home = (props) => {
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={() => onSignOut()}>Log Out</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link href="#tasks">Tasks</Nav.Link>
+                    <Nav.Link onClick={() => setTasksPage(true)}>Tasks</Nav.Link>
                     <Nav.Link href="#about">About</Nav.Link>
                 </Nav>
             </Navbar>
-            {!settingsPage && (
+            {!settingsPage && !tasksPage && (
                 <div>
                     <h1>HOMEPAGE</h1>
                     <p>This is the homepage</p>
@@ -48,6 +51,14 @@ const Home = (props) => {
                     <AccountSettings userToken={props.userToken}></AccountSettings>
                 </div>
             )}
+
+            {tasksPage && (
+                <div>
+                    <Tasks userToken={props.userToken}></Tasks>
+                </div>
+            )}
+
+            
 
 
         </div>
