@@ -15,6 +15,7 @@ const SignUp = (props) => {
         .then((res) => {
             props.setUserId(res.data.user._id)
             props.setUserToken(res.data.user.token)
+            props.setNewUser(false)
         })
         .catch((err) => console.log(err))
     };
@@ -30,7 +31,7 @@ const SignUp = (props) => {
 
                 <label className='signUp-input' for='password_confirmation'>Password Confirmation</label>
                 <input className='signUp-input' name='password_confirmation' type='password' placeholder='Confirm Password' onChange={(event) => setPasswordConfirmation(event.target.value)}></input>
-
+                
                 <input className='signUp-input signUp-submit' type='submit' value='Submit'></input>
                 <div className='auth-switch-container' onClick={() => props.setNewUser(false)}>
                     <p className='auth-switch'>Already have an account?</p>
