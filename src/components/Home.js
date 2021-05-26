@@ -29,6 +29,11 @@ const Home = (props) => {
         setSettingsPage(true)
     }
 
+    const goTasks = () => {
+        setTasksPage(true)
+        setSettingsPage(false)
+    }
+
     return (
         <div>
             <Navbar bg="dark" variant="dark">
@@ -40,7 +45,7 @@ const Home = (props) => {
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={() => onSignOut()}>Log Out</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link onClick={() => setTasksPage(true)}>Tasks</Nav.Link>
+                    <Nav.Link onClick={() => goTasks()}>Tasks</Nav.Link>
                     <Nav.Link href="#about">About</Nav.Link>
                 </Nav>
             </Navbar>
