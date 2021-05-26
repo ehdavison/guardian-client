@@ -24,6 +24,11 @@ const Home = (props) => {
         setTasksPage(false)
     }
 
+    const goSettings = () => {
+        setTasksPage(false)
+        setSettingsPage(true)
+    }
+
     return (
         <div>
             <Navbar bg="dark" variant="dark">
@@ -31,7 +36,7 @@ const Home = (props) => {
                 <Nav className="mr-auto">
                     <NavDropdown title="Account" id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Stats</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => setSettingsPage(true)}>Account Settings</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => goSettings()}>Account Settings</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={() => onSignOut()}>Log Out</NavDropdown.Item>
                     </NavDropdown>
