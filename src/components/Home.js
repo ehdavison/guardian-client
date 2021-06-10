@@ -1,15 +1,18 @@
 import React from 'react';
 import {useState} from 'react';
 import AccountSettings from './AccountSettings';
-import Tasks from './Tasks'
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
-import Navbar from 'react-bootstrap/Navbar'
-import {signOut} from '../api/auth'
+import Tasks from './Tasks';
+import TaskCreate from './TaskCreate';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Navbar from 'react-bootstrap/Navbar';
+import {signOut} from '../api/auth';
 
 const Home = (props) => {
-    const [settingsPage, setSettingsPage] = useState(false)
-    const [tasksPage, setTasksPage] = useState(false)
+    const [settingsPage, setSettingsPage] = useState(false);
+    const [tasksPage, setTasksPage] = useState(false);
+    const [taskCreatePage, setTaskCreatePage] = useState(false);
+
 
     const onSignOut = () => {
         signOut(props.userToken)
@@ -22,6 +25,25 @@ const Home = (props) => {
     const goHome = () => {
         setSettingsPage(false)
         setTasksPage(false)
+        setTaskCreatePage(false)
+    }
+
+    const goSettings = () => {
+        setTasksPage(false)
+        setSettingsPage(true)
+        setTaskCreatePage(false)
+    }
+
+    const goTasks = () => {
+        setTasksPage(true)
+        setSettingsPage(false)
+        setTaskCreatePage(false)
+    }
+
+    const goTaskCreate = () => {
+        setTaskCreatePage(true)
+        setTasksPage(false)
+        setSettingsPage(false)
     }
 
     return (
@@ -31,15 +53,16 @@ const Home = (props) => {
                 <Nav className="mr-auto">
                     <NavDropdown title="Account" id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Stats</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => setSettingsPage(true)}>Account Settings</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => goSettings()}>Account Settings</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={() => onSignOut()}>Log Out</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link onClick={() => setTasksPage(true)}>Tasks</Nav.Link>
+                    <Nav.Link onClick={() => goTasks()}>Tasks</Nav.Link>
+                    <Nav.Link onClick={() => goTaskCreate()}>Create Task</Nav.Link>
                     <Nav.Link href="#about">About</Nav.Link>
                 </Nav>
             </Navbar>
-            {!settingsPage && !tasksPage && (
+            {!settingsPage && !tasksPage && !taskCreatePage && (
                 <div>
                     <h1>HOMEPAGE</h1>
                     <p>This is the homepage</p>
@@ -55,6 +78,12 @@ const Home = (props) => {
             {tasksPage && (
                 <div>
                     <Tasks userToken={props.userToken}></Tasks>
+                </div>
+            )}
+
+            {taskCreatePage && (
+                <div>
+                    <TaskCreate userToken={props.userToken}></TaskCreate>
                 </div>
             )}
 

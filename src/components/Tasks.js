@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import {useState} from 'react';
-import {indexTasks} from '../api/tasks'
+import {indexTasks} from '../api/tasks';
+import './tasks.css';
 
 const Tasks = (props) => {
     const [tasks, setTasks] = useState([]);
@@ -17,12 +18,12 @@ const Tasks = (props) => {
     
     const tasksIndex = tasks.map((task) => {
         return (
-        <div>
-            <h2>{task.title}</h2>
-            <p>Location: {task.location}</p>
-            <p>Time: {task.time}</p>
-            <p>Details: {task.details}</p>
-            <p>Counter: {task.timesCompleted}</p>
+        <div className='index-task-container'>
+            <h2 className='index-task-title'>{task.title}</h2>
+            <p className='index-task-info'>Location: {task.location}</p>
+            <p className='index-task-info'>Time: {task.time}</p>
+            <p className='index-task-info'>Details: {task.details}</p>
+            <p className='index-task-info'>Counter: {task.timesCompleted}</p>
         </div>
     )});
 
