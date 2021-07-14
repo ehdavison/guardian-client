@@ -36,7 +36,7 @@ export const createTask = (user, task) => {
     method: 'POST',
     url: apiUrl + '/tasks',
     headers: {
-      Authorization: `Bearer ${user.token}`
+      Authorization: `Bearer ${user}`
     },
     data: { task }
   })
