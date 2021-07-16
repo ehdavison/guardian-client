@@ -26,7 +26,7 @@ export const deleteTask = (user, taskId) => {
     method: 'DELETE',
     url: apiUrl + '/tasks/' + taskId,
     headers: {
-      Authorization: `Bearer ${user.token}`
+      Authorization: `Bearer ${user}`
     }
   })
 }

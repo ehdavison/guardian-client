@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import {useState} from 'react';
-import {indexTasks} from '../api/tasks';
+import {indexTasks, deleteTask} from '../api/tasks';
 import './tasks.css';
 
 const Tasks = (props) => {
     const [tasks, setTasks] = useState([]);
     
+
     useEffect(() => {
         indexTasks(props.userToken)
         .then((res) => {
@@ -16,7 +17,17 @@ const Tasks = (props) => {
         })
     }, [props.userToken]);
     
-    const tasksIndex = tasks.map((task) => {
+    
+    const handleDelete = (event, task_id, index) => {
+        event.preventDefault()
+        deleteTask(props.userToken, task_id)
+        .then((res) => {
+            const updatedTasks = tasks.filter((task, idx) => idx !== index)
+            return setTasks(updatedTasks)
+        })
+    }
+
+    const tasksIndex = tasks.map((task, index) => {
         return (
         <div className='index-task-container'>
             <h2 className='index-task-title'>{task.title}</h2>
@@ -24,8 +35,10 @@ const Tasks = (props) => {
             <p className='index-task-info'>Time: {task.time}</p>
             <p className='index-task-info'>Details: {task.details}</p>
             <p className='index-task-info'>Counter: {task.timesCompleted}</p>
+            <button onClick={(e) => handleDelete(e, task._id, index)}>Delete</button>
         </div>
     )});
+
 
     return (
         <div>
