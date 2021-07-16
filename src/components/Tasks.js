@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {useState} from 'react';
-import {indexTasks, deleteTask} from '../api/tasks';
+import {indexTasks, deleteTask, updateTask} from '../api/tasks';
 import './tasks.css';
 
 const Tasks = (props) => {
@@ -27,6 +27,19 @@ const Tasks = (props) => {
         })
     }
 
+    const handleIncreaseCount = (event, task, task_id, index) => {
+        event.preventDefault()
+        const newList = [...tasks]
+        newList[index].timesCompleted = newList[index].timesCompleted + 1
+        console.log(newList)
+        setTasks(newList)
+        updateTask(props.userToken, newList[index], task_id)
+        .then((res) => {
+            console.log(res)
+        })
+    }
+
+    console.log(tasks)
     const tasksIndex = tasks.map((task, index) => {
         return (
         <div className='index-task-container'>
@@ -34,10 +47,12 @@ const Tasks = (props) => {
             <p className='index-task-info'>Location: {task.location}</p>
             <p className='index-task-info'>Time: {task.time}</p>
             <p className='index-task-info'>Details: {task.details}</p>
-            <p className='index-task-info'>Counter: {task.timesCompleted}</p>
+            <input type='number' defaultValue={task.timesCompleted}className='index-task-info' onChange={(e) => handleIncreaseCount(e, task, task._id, index)}></input>
             <button onClick={(e) => handleDelete(e, task._id, index)}>Delete</button>
+
         </div>
     )});
+
 
 
     return (

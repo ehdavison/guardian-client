@@ -47,7 +47,7 @@ export const updateTask = (user, task, id) => {
     method: 'PATCH',
     url: apiUrl + '/tasks/' + id,
     headers: {
-      Authorization: `Bearer ${user.token}`
+      Authorization: `Bearer ${user}`
     },
     data: { task: task }
   })
